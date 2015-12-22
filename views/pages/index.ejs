@@ -1,10 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <% include ../partials/header.ejs %>
 </head>
 
 <body>
-  Axon Quiz
+    <div class="container-fluid">
+        <h1>Axon Quiz</h1>
+        <div class="quiz-sheet">
+            <form method="POST" role="form">
+                    <div class="row">
+                        <fieldset>
+                            <div class="radio .disabled question-block">
+                                <div class="question"><%= question.label %></div>
+                                <div class="answers-block">
+                                    <% for ( i = 0; i < question.answers.length; i++) { %>
+                                    <div class="radio form-group">
+                                        <label>
+                                            <input type="radio" name="<%= question.label %>" value="<%= question.answers[i] %>">
+                                            <%= question.answers[i] %>
+                                        </label>
+                                    </div>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                <button type="submit" class="btn btn-primary">submit answers</button>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
