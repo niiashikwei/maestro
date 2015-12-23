@@ -8,19 +8,7 @@ var app = express();
 
 //business logic
 var ta = require('./public/js/ta');
-
-//content
-var question = {
-        label: "When should you store state on an aggregate?",
-        answers: [
-            "Whenever there's a new field on an even the domain is listening to",
-            "Never",
-            "When it's needed to process business logic in the aggregate",
-            "Always",
-            "When it is needed by the read side"
-        ],
-        correct_answers: ["When it's needed to process business logic in the aggregate"]
-};
+var questions = require('./public/js/questions');
 
 //configurations
 app.set('port', (process.env.PORT || 5000));
@@ -35,13 +23,12 @@ app.set('view engine', 'ejs');
 //routing
 app.get('/', jsonParser, function(request, response) {
     console.log("REQUEST: %j", request.body);
-    response.render('pages/index', {question: question});
+    response.render('pages/index', {question: questions.getQuizQuestion()});
 });
 
 app.post('/', jsonParser, function(request, response) {
     console.log("REQUEST: %j", request.body);
-    var submittedAnswer = request.body[question.label];
-    var result = ta.gradeQuestion(submittedAnswer, question);
+    var result = ta.gradeQuestion(request.body, questions.getQuizQuestion());
     response.render('pages/results', {result: result});
 });
 
