@@ -6,6 +6,9 @@ var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json();
 var app = express();
 
+//business logic
+var ta = require('./public/js/ta');
+
 //content
 var question = {
         label: "When should you store state on an aggregate?",
@@ -37,14 +40,8 @@ app.get('/', jsonParser, function(request, response) {
 
 app.post('/', jsonParser, function(request, response) {
     console.log("REQUEST: %j", request.body);
-    var result = "incorrect :-(";
     var submittedAnswer = request.body[question.label];
-    var isCorrectAnswer = ( question.correct_answers.length == 1) && ( question.correct_answers[0] == submittedAnswer);
-    console.log("submittedAnswer:" + submittedAnswer);
-    console.log("isCorrectAnswer: " + isCorrectAnswer);
-    if (isCorrectAnswer){
-        result = "correct :-)";
-    }
+    var result = ta.gradeQuestion(submittedAnswer, question);
     response.render('pages/results', {result: result});
 });
 
