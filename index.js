@@ -4,11 +4,18 @@ var bodyParser = require('body-parser');
 
 //initializers
 var jsonParser = bodyParser.json();
-var app = express();
 
-//business logic
+var mongoose = require('mongoose');
+var seeder = require('./public/js/seed');
+var question = require('./public/js/questions');
 var ta = require('./public/js/ta');
-var questions = require('./public/js/questions');
+
+seeder.seedDB();
+mongoose.connect('mongodb://localhost/maestro-dev',{server: { poolSize: 2 } }, function(){
+   console.log("connected to mongodb");
+});
+
+var app = express();
 
 //configurations
 app.set('port', (process.env.PORT || 5000));
@@ -23,13 +30,17 @@ app.set('view engine', 'ejs');
 //routing
 app.get('/', jsonParser, function(request, response) {
     console.log("REQUEST: %j", request.body);
-    response.render('pages/index', {question: questions.getQuizQuestion()});
+    question.getQuizQuestions(function(quizQuestions){
+        response.render('pages/index', {questions: quizQuestions});
+    });
 });
 
 app.post('/', jsonParser, function(request, response) {
     console.log("REQUEST: %j", request.body);
-    var result = ta.gradeQuestion(request.body, questions.getQuizQuestion());
-    response.render('pages/results', {result: result});
+    question.getQuizQuestions(function(quizQuestions){
+        var result = ta.gradeQuestion(request.body, quizQuestions[0]);
+        response.render('pages/results', {result: result});
+    });
 });
 
 //finally

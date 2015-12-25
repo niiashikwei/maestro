@@ -1,16 +1,16 @@
+var mongoose = require('mongoose');
 
-exports.getQuizQuestion = function(){
-    var question = {
-        label: "When should you store state on an aggregate?",
-        answers: [
-            "Whenever there's a new field on an even the domain is listening to",
-            "Never",
-            "When it's needed to process business logic in the aggregate",
-            "Always",
-            "When it is needed by the read side"
-        ],
-        correct_answers: ["When it's needed to process business logic in the aggregate"]
-    };
-
-    return question;
+exports.getQuizQuestions = function(callback){
+    var Question = mongoose.model('Question', exports.questionModel);
+    var db = mongoose.connection;
+    db.on('error', console.error.bind(console, 'connection error:'));
+    db.once('open', function() {
+        console.log("connected to mongoDB!")
+    });
+    Question.find(function(err, questions){
+        console.log("Questions: %j", questions);
+        if(typeof callback == "function"){
+            callback(questions);
+        }
+    });
 };
