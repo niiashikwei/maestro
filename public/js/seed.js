@@ -1,6 +1,5 @@
 var mongooseSeeder = require('mongoose-seed');
 
-
 // Data array containing seed data - documents organized by Model
 var data = [
     {
@@ -40,7 +39,6 @@ var data = [
 
 exports.seedDB = function(){
     mongooseSeeder.connect('mongodb://localhost/sample-dev', function(){
-        mongooseSeeder.loadModels(['./public/js/question.js']);
         // Clear specified collections
         console.log("Start seeding DB");
         mongooseSeeder.clearModels(['Question'], function() {

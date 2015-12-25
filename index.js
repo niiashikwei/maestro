@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json();
 
 var mongoose = require('mongoose');
+var questionSchema = require('./public/js/question');
 var seeder = require('./public/js/seed');
 var question = require('./public/js/questions');
 var ta = require('./public/js/ta');
