@@ -11,17 +11,20 @@
             <form method="POST" role="form">
                 <fieldset>
                     <div class="radio .disabled question-block">
-                        <div class="question"><%= questions[0].label %></div>
-                        <div class="answers-block">
-                            <% for ( i = 0; i < questions[0].answer_choices.length; i++) { %>
-                                <div class="radio form-group">
-                                    <label>
-                                        <input type="radio" name="<%= questions[0].label %>" value="<%= questions[0].answer_choices[i] %>">
-                                        <%= questions[0].answer_choices[i] %>
-                                    </label>
-                                </div>
-                            <% } %>
-                        </div>
+                        <% for( i =0; i< questions.length; i++ ){ %>
+                            <div class="question"><%= (i+1) +". "+ questions[i].label %></div>
+                            <div class="answers-block">
+                                <% for ( j = 0; j < questions[i].answer_choices.length; j++) { %>
+                                    <div class="radio form-group">
+                                        <label>
+                                            <input type="radio" name="<%= questions[i].label %>" value="<%= questions[i].answer_choices[j] %>">
+                                            <%= questions[i].answer_choices[j] %>
+                                        </label>
+                                    </div>
+                                <% } %>
+                            </div>
+                        <br>
+                        <% } %>
                     </div>
                 </fieldset>
                 <button type="submit" class="btn btn-primary">submit answers</button>

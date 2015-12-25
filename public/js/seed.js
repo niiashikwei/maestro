@@ -19,6 +19,20 @@ var data = [
                     "When it is needed by the read side"
                 ],
                 correct_answers : ["When it's needed to process business logic in the aggregate"]
+            },
+            {
+                _id : 2,
+                author    : "anonymous",
+                created_date      : new Date(),
+                label     : "When should the Aggregate have access to the read repository?",
+                answer_choices : [
+                    "Whenever it needs to look up a value that's stored on the read-side but not the write-side",
+                    "Never",
+                    "When it's needed to process business logic in the aggregate",
+                    "Always",
+                    "when the aggregate needs to modify a read-side value as a result of an event it's listening to"
+                ],
+                correct_answers : ["Never"]
             }
         ]
     }

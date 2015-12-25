@@ -38,7 +38,7 @@ app.get('/', jsonParser, function(request, response) {
 app.post('/', jsonParser, function(request, response) {
     console.log("REQUEST: %j", request.body);
     question.getQuizQuestions(function(quizQuestions){
-        var result = ta.gradeQuestion(request.body, quizQuestions[0]);
+        var result = ta.gradeQuestions(request.body, quizQuestions);
         response.render('pages/results', {result: result});
     });
 });
