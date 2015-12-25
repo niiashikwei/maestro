@@ -12,6 +12,4 @@ var QuestionSchema = new Schema({
     correct_answers : Array
 });
 
-Question = mongoose.model('Question', QuestionSchema);
-
-exports.questionModel = Question;
+mongoose.model('Question', QuestionSchema);
