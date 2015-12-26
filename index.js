@@ -11,8 +11,9 @@ var seeder = require('./public/js/seed');
 var question = require('./public/js/questions');
 var ta = require('./public/js/ta');
 
-seeder.seedDB();
-mongoose.connect('mongodb://localhost/maestro-dev',{server: { poolSize: 2 } }, function(){
+const MONGODB_URI = process.env.MONGOLAB_URI || 'mongodb://localhost/maestro-dev';
+seeder.seedDB(MONGODB_URI);
+mongoose.connect(MONGODB_URI,{server: { poolSize: 2 } }, function(){
    console.log("connected to mongodb");
 });
 

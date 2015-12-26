@@ -37,8 +37,8 @@ var data = [
     }
 ];
 
-exports.seedDB = function(){
-    mongooseSeeder.connect('mongodb://localhost/sample-dev', function(){
+exports.seedDB = function(mongodb_uri){
+    mongooseSeeder.connect(mongodb_uri, function(){
         // Clear specified collections
         console.log("Start seeding DB");
         mongooseSeeder.clearModels(['Question'], function() {
