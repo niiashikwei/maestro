@@ -1,20 +1,37 @@
+var numeral = require('numeral');
 
 exports.gradeQuestions = function(requestBody, questions){
-    var answeredCorrectly = 0;
+    var totalPoints = numeral(0);
     var totalNumberOfQuestions = questions.length;
 
     for (i = 0; i < questions.length; i++){
-        var submittedAnswer = requestBody[questions[i].label];
         var correctAnswers = questions[i].correct_answers;
-        var isCorrectAnswer = ( correctAnswers.length == 1) &&
-                              ( correctAnswers[0] == submittedAnswer);
-        if (isCorrectAnswer) {
-            answeredCorrectly++;
+        var submittedAnswers;
+        if (correctAnswers > 1){
+            submittedAnswers = requestBody[questions[i].label];
+        }else{
+            submittedAnswers = [requestBody[questions[i].label]];
         }
-        console.log("submittedAnswer:" + submittedAnswer);
-        console.log("isCorrectAnswer: " + isCorrectAnswer);
+        var currentPoints = numeral(0);
+
+        var maxPoints = numeral(correctAnswers.length);
+            for (i = 0; i < correctAnswers.length; i++){
+                var currentCorrectAnswer = correctAnswers[i];
+
+                for (k = 0; k < submittedAnswers.length; k++) {
+                    var currentSubmittedAnswer = submittedAnswers[k];
+                    if (currentCorrectAnswer == currentSubmittedAnswer){
+                        currentPoints.add(1);
+                        break;
+                    }
+                }
+            }
+            var pointsForMultiChoiceQuestion = numeral(currentPoints).divide(maxPoints);
+            console.log("pointsForMultiChoiceQuestion: " + pointsForMultiChoiceQuestion);
+            totalPoints = totalPoints.add(pointsForMultiChoiceQuestion);
+        console.log("totalPoints: " + totalPoints);
     }
 
-    return answeredCorrectly + "/" + totalNumberOfQuestions;
+    return totalPoints.format('0.00') + "/" + totalNumberOfQuestions;
 };
 

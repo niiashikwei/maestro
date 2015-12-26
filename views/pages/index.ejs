@@ -14,13 +14,24 @@
                         <% for( i =0; i< questions.length; i++ ){ %>
                             <div class="question"><%= (i+1) +". "+ questions[i].label %></div>
                             <div class="answers-block">
-                                <% for ( j = 0; j < questions[i].answer_choices.length; j++) { %>
-                                    <div class="radio form-group">
-                                        <label>
-                                            <input type="radio" name="<%= questions[i].label %>" value="<%= questions[i].answer_choices[j] %>">
-                                            <%= questions[i].answer_choices[j] %>
-                                        </label>
-                                    </div>
+                                <% if (questions[i].correct_answers.length == 1) {%>
+                                    <% for ( j = 0; j < questions[i].answer_choices.length; j++) { %>
+                                        <div class="radio form-group">
+                                            <label>
+                                                <input type="radio" name="<%= questions[i].label %>" value="<%= questions[i].answer_choices[j] %>">
+                                                <%= questions[i].answer_choices[j] %>
+                                            </label>
+                                        </div>
+                                    <% } %>
+                                <% } else { console.log("multiple choice question detected!");%>
+                                        <% for ( j = 0; j < questions[i].answer_choices.length; j++) { %>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" name="<%= questions[i].label %>" value="<%= questions[i].answer_choices[j] %>">
+                                                    <%= questions[i].answer_choices[j] %>
+                                                </label>
+                                            </div>
+                                        <% } %>
                                 <% } %>
                             </div>
                         <br>
