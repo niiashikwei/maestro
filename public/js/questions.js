@@ -8,7 +8,6 @@ exports.getQuizQuestions = function(callback){
         console.log("connected to mongoDB!")
     });
     Question.find(function(err, questions){
-        console.log("Questions: %j", questions);
         if(typeof callback == "function"){
             callback(questions);
         }

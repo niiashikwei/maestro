@@ -1,35 +1,20 @@
 var numeral = require('numeral');
 
-exports.gradeQuestions = function(requestBody, questions){
+exports.gradeQuestions = function(submittedQuestionAnswersMap, jsonQuestions){
     var totalPoints = numeral(0);
-    var totalNumberOfQuestions = questions.length;
+    var totalNumberOfQuestions = jsonQuestions.length;
 
-    for (i = 0; i < questions.length; i++){
-        var correctAnswers = questions[i].correct_answers;
-        var submittedAnswers;
-        if (correctAnswers > 1){
-            submittedAnswers = requestBody[questions[i].label];
-        }else{
-            submittedAnswers = [requestBody[questions[i].label]];
+    for (i=0; i < jsonQuestions.length; i++) {
+        var arrayOfCorrectAnswers = jsonQuestions[i].correct_answers;
+        var answerInSubmission = submittedQuestionAnswersMap[jsonQuestions[i].id];
+        console.log("jsonQuestions: %s", jsonQuestions);
+        console.log("question being graded: %s", jsonQuestions[i].id);
+        console.log("arrayOfCorrectAnswers: %s", arrayOfCorrectAnswers);
+        console.log("answerInSubmission: %s", answerInSubmission);
+
+        if (arrayOfCorrectAnswers[0] == answerInSubmission) {
+            totalPoints.add(1);
         }
-        var currentPoints = numeral(0);
-
-        var maxPoints = numeral(correctAnswers.length);
-            for (i = 0; i < correctAnswers.length; i++){
-                var currentCorrectAnswer = correctAnswers[i];
-
-                for (k = 0; k < submittedAnswers.length; k++) {
-                    var currentSubmittedAnswer = submittedAnswers[k];
-                    if (currentCorrectAnswer == currentSubmittedAnswer){
-                        currentPoints.add(1);
-                        break;
-                    }
-                }
-            }
-            var pointsForMultiChoiceQuestion = numeral(currentPoints).divide(maxPoints);
-            console.log("pointsForMultiChoiceQuestion: " + pointsForMultiChoiceQuestion);
-            totalPoints = totalPoints.add(pointsForMultiChoiceQuestion);
-        console.log("totalPoints: " + totalPoints);
     }
 
     return totalPoints.format('0.00') + "/" + totalNumberOfQuestions;

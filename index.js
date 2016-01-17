@@ -31,14 +31,12 @@ app.set('view engine', 'ejs');
 
 //routing
 app.get('/', jsonParser, function(request, response) {
-    console.log("REQUEST: %j", request.body);
     question.getQuizQuestions(function(quizQuestions){
         response.render('pages/index', {questions: quizQuestions});
     });
 });
 
 app.post('/', jsonParser, function(request, response) {
-    console.log("REQUEST: %j", request.body);
     question.getQuizQuestions(function(quizQuestions){
         var result = ta.gradeQuestions(request.body, quizQuestions);
         response.render('pages/results', {result: result});

@@ -18,7 +18,7 @@
                                     <% for ( j = 0; j < questions[i].answer_choices.length; j++) { %>
                                         <div class="radio form-group">
                                             <label>
-                                                <input type="radio" name="<%= questions[i].label %>" value="<%= questions[i].answer_choices[j] %>">
+                                                <input type="radio" name="<%= questions[i].id %>" value="<%= questions[i].answer_choices[j] %>">
                                                 <%= questions[i].answer_choices[j] %>
                                             </label>
                                         </div>
@@ -27,7 +27,7 @@
                                         <% for ( j = 0; j < questions[i].answer_choices.length; j++) { %>
                                             <div class="checkbox">
                                                 <label>
-                                                    <input type="checkbox" name="<%= questions[i].label %>" value="<%= questions[i].answer_choices[j] %>">
+                                                    <input type="checkbox" name="<%= questions[i].id %>" value="<%= questions[i].answer_choices[j] %>">
                                                     <%= questions[i].answer_choices[j] %>
                                                 </label>
                                             </div>
