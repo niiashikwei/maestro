@@ -8,13 +8,13 @@
     <div class="container-fluid">
         <h1>Axon Quiz</h1>
         <div class="quiz-sheet">
-            <form method="POST" role="form">
+            <form method="POST" role="form" onSubmit="validateSubmission()">
                 <fieldset>
                     <div class="radio .disabled question-block">
                         <% for( i =0; i< questions.length; i++ ){ %>
-                            <div class="question"><%= (i+1) +". "+ questions[i].label %></div>
-                            <div class="answers-block">
                                 <% if (questions[i].correct_answers.length == 1) {%>
+                                    <div class="question single-choice"><%= (i+1) +". "+ questions[i].label %></div>
+                                    <div class="answers-block">
                                     <% for ( j = 0; j < questions[i].answer_choices.length; j++) { %>
                                         <div class="radio form-group">
                                             <label>
@@ -23,7 +23,10 @@
                                             </label>
                                         </div>
                                     <% } %>
-                                <% } else { console.log("multiple choice question detected!");%>
+                                    </div>
+                                <% } else {%>
+                                        <div class="question multi-choice"><%= (i+1) +". "+ questions[i].label %></div>
+                                        <div class="answers-block">
                                         <% for ( j = 0; j < questions[i].answer_choices.length; j++) { %>
                                             <div class="checkbox">
                                                 <label>
@@ -32,8 +35,8 @@
                                                 </label>
                                             </div>
                                         <% } %>
+                                        </div>
                                 <% } %>
-                            </div>
                         <br>
                         <% } %>
                     </div>

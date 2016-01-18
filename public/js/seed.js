@@ -32,6 +32,25 @@ var data = [
                     "when the aggregate needs to modify a read-side value as a result of an event it's listening to"
                 ],
                 correct_answers : ["Never"]
+            },
+            {
+                _id : 3,
+                author    : "anonymous",
+                created_date      : new Date(),
+                label     : "What are some advantages of event sourcing?",
+                answer_choices : [
+                    "Having a true history of the system and providing benefits such as audit and traceability (required by law in some fields)",
+                    "It forces you to use good architecture patterns",
+                    "Ability to put the system in any prior state",
+                    "The kind of operations made on an event store is very limited, making the persistence very predictable and thus easing testing",
+                    "It has none",
+                    "Although it makes it difficult to respond to new requirements, it compensates by allowing you to scale your application rapidly!"
+                ],
+                correct_answers : [
+                    "Ability to put the system in any prior state",
+                    "The kind of operations made on an event store is very limited, making the persistence very predictable and thus easing testing",
+                    "Having a true history of the system and providing benefits such as audit and traceability (required by law in some fields)"
+                ]
             }
         ]
     }
