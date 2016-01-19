@@ -13,6 +13,7 @@ var ta = require('./public/js/ta');
 
 const MONGODB_URI = process.env.MONGOLAB_URI || 'mongodb://localhost/maestro-dev';
 seeder.seedDB(MONGODB_URI);
+mongoose.set('debug', true);
 mongoose.connect(MONGODB_URI,{server: { poolSize: 2 } }, function(){
    console.log("connected to mongodb");
 });
@@ -37,6 +38,7 @@ app.get('/', jsonParser, function(request, response) {
 });
 
 app.post('/', jsonParser, function(request, response) {
+    console.log(request.body);
     question.getQuizQuestions(function(quizQuestions){
         var result = ta.gradeQuestions(request.body, quizQuestions);
         response.render('pages/results', {result: result});
