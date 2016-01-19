@@ -22,19 +22,26 @@ exports.gradeQuestions = function(submittedQuestionAnswersMap, jsonQuestions){
 
 function gradeMultiChoiceQuestion(storedQuestion, submittedAnswers ){
     var totalPoints = numeral(0);
-    var arrayOfCorrectAnswers = storedQuestion.correct_answers;
-    var maxPoints = arrayOfCorrectAnswers.length;
+    var maxPoints = storedQuestion.correct_answers.length;
+    var arrayOfCorrectAnswers = JSON.stringify(storedQuestion.correct_answers);
     var answersInSubmission = submittedAnswers[storedQuestion.id];
-    var stringJson = JSON.stringify(answersInSubmission);
-    console.log("question being graded: %s", storedQuestion.id);
-    console.log("arrayOfCorrectAnswers: %s", arrayOfCorrectAnswers);
-    console.log("JSON.stringify(arrayOfCorrectAnswers): %s", JSON.stringify(arrayOfCorrectAnswers));
-    console.log("answersInSubmission: %s", answersInSubmission);
-    console.log("stringJson: %s", stringJson);
 
-    if(JSON.stringify(arrayOfCorrectAnswers).indexOf(stringJson) != -1){
-        totalPoints.add(1);
-        return totalPoints.divide(maxPoints);
+    if(typeof answersInSubmission === 'string'){
+        if (arrayOfCorrectAnswers.indexOf(answersInSubmission) != -1){
+            totalPoints.add(1);
+        }
+    }
+
+    if(typeof answersInSubmission == 'object'){
+        for(i = 0; i < answersInSubmission.length; i++){
+            if(arrayOfCorrectAnswers.indexOf(answersInSubmission[i]) != -1){
+                totalPoints.add(1);
+            }
+        }
+    }
+
+    if(typeof answersInSubmission == 'undefined'){
+        console.log("answersInSubmission is undefined");
     }
 
     return totalPoints.divide(maxPoints);
