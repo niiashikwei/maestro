@@ -74,17 +74,17 @@ var data = [
                 created_date      : new Date(),
                 label     : "When do you need to write an upcaster in an event driven framework such as Axon?",
                 answer_choices : [
-                    "when a field name on your event changes",
-                    "when you add a new method to your event",
-                    "when the field type on your event changes",
-                    "when you create a new event",
-                    "when you change the name of your event",
-                    "you never actually need to, its optional"
+                    "When a field name on your event changes",
+                    "When you add a new method to your event",
+                    "When the field type on your event changes",
+                    "When you create a new event",
+                    "When you change the name of your event",
+                    "You never actually need to, its optional"
                 ],
                 correct_answers : [
-                    "when a field name on your event changes",
-                    "when you change the name of your event",
-                    "when the field type on your event changes"
+                    "When a field name on your event changes",
+                    "When you change the name of your event",
+                    "When the field type on your event changes"
                 ]
             }
         ]
