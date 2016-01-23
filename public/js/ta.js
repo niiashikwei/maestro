@@ -47,6 +47,10 @@ function gradeMultiChoiceQuestion(storedQuestion, submittedAnswers ){
             console.log("answerInSubmission: %s", answersInSubmission[i]);
             if(arrayOfCorrectAnswers.indexOf(answersInSubmission[i]) != -1){
                 totalPoints.add(1);
+            }else{
+                if(totalPoints.value() >= 1){
+                    totalPoints.subtract(1);
+                }
             }
         }
     }
