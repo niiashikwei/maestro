@@ -1,5 +1,6 @@
 module.exports = {
     questions: [{
+        id : 1,
         author: 'anonymous',
         answer_choices: ['Whenever there\'s a new field on an event the domain is listening to',
             'Never',
@@ -10,6 +11,7 @@ module.exports = {
         label: 'When should you store state on an aggregate?'
         },
         {
+            id : 2,
             author: 'anonymous',
             answer_choices: ['Whenever it needs to look up a value that\'s stored on the read-side but not the write-side',
                 'Never',
@@ -20,6 +22,7 @@ module.exports = {
             label: 'When should the Aggregate have access to the read repository?'
         },
         {
+            id : 3,
             author: 'anonymous',
             answer_choices: ['Having a true history of the system and providing benefits such as audit and traceability (required by law in some fields)',
                 'It forces you to use good architecture patterns',
@@ -33,6 +36,7 @@ module.exports = {
             label: 'What are some advantages of event sourcing?'
         },
         {
+            id : 4,
             author: 'anonymous',
             answer_choices: ['A class that allows you to cast a spell on your architecture, making it magical',
                 'A way to reference a superclass',
@@ -43,6 +47,7 @@ module.exports = {
             label: 'In the context of the Axon framework, what is an upcaster?'
         },
         {
+            id : 5,
             author: 'anonymous',
             answer_choices: ['When a field name on your event changes',
                 'When you add a new method to your event',
@@ -58,7 +63,7 @@ module.exports = {
 
     submittedTest: {
         '1': 'When it\'s needed to process business logic in the aggregate',
-        '2': 'when the aggregate needs to modify a read-side value as a result of an event it\'s listening to',
+        '2': 'Never',
         '3': ['Ability to put the system in any prior state',
             'The kind of operations made on an event store is very limited, making the persistence very predictable and thus easing testing'],
         '4': 'A class that tells your framework how to convert an older version of an event into a newer version',

@@ -1,5 +1,6 @@
 var numeral = require('numeral');
-var _ = require('lodash/fp');
+
+var _ = require('lodash');
 
 exports.gradeQuestions = function(submittedQuestionAnswersMap, jsonQuestions){
     var totalPoints = numeral(0);
@@ -7,7 +8,7 @@ exports.gradeQuestions = function(submittedQuestionAnswersMap, jsonQuestions){
     _.times(jsonQuestions.length, function(i){
         var currentQuestion = jsonQuestions[i];
 
-        console.log("question being graded: %s", currentQuestion.id);
+        console.log("question being graded: %s", i);
         console.log("arrayOfCorrectAnswers: %s", currentQuestion.correct_answers);
 
         var points;
@@ -18,7 +19,7 @@ exports.gradeQuestions = function(submittedQuestionAnswersMap, jsonQuestions){
         }
 
         totalPoints.add(points);
-    })
+    });
 
     return totalPoints.format('0.00') + "/" + jsonQuestions.length;
 };
