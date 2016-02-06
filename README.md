@@ -9,9 +9,8 @@ node index.js
 ```
 
 ## Run
-
 Runs on `localhost:5000`
 
 
 ## Test
-For unit tests, run `jasmine` at the base dir
+For unit tests & jslint, run `npm run check` at the base dir
