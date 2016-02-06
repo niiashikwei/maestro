@@ -2,6 +2,10 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 
+var _ = require('lodash');
+var _ = require('lodash/core');
+var _ = require('lodash/fp');
+
 //initializers
 var jsonParser = bodyParser.json();
 

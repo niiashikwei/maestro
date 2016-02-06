@@ -1,26 +1,26 @@
 var numeral = require('numeral');
+var _ = require('lodash/fp');
 
 exports.gradeQuestions = function(submittedQuestionAnswersMap, jsonQuestions){
-    var totalNumberOfQuestions = jsonQuestions.length;
     var totalPoints = numeral(0);
 
-    var i;
-    for (i=0; i < jsonQuestions.length; i++) {
+    _.times(jsonQuestions.length, function(i){
         var currentQuestion = jsonQuestions[i];
+
         console.log("question being graded: %s", currentQuestion.id);
         console.log("arrayOfCorrectAnswers: %s", currentQuestion.correct_answers);
+
         var points;
         if(currentQuestion.correct_answers.length == 1){
             points = gradeSingleChoiceQuestion(currentQuestion, submittedQuestionAnswersMap);
-            totalPoints.add(points);
-            continue;
+        } else {
+            points = gradeMultiChoiceQuestion(currentQuestion, submittedQuestionAnswersMap);
         }
 
-        points = gradeMultiChoiceQuestion(currentQuestion, submittedQuestionAnswersMap);
         totalPoints.add(points);
-    }
+    })
 
-    return totalPoints.format('0.00') + "/" + totalNumberOfQuestions;
+    return totalPoints.format('0.00') + "/" + jsonQuestions.length;
 };
 
 function gradeMultiChoiceQuestion(storedQuestion, submittedAnswers ){
