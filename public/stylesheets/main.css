@@ -25,7 +25,12 @@ body {
 }
 
 .quiz-sheet .question {
+    font-size: 1.7rem;
     font-weight: bold;
+}
+
+.quiz-sheet .answers-block {
+    margin-left: 15px;
 }
 
 .quiz-sheet .quiz-submit {
