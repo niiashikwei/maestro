@@ -1,16 +1,35 @@
 body {
     background-color: royalblue;
-    margin-left:10%;
-    margin-right:10%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 5%;
 }
 
-h1 {
+.maestro-title h1 {
+    padding: 0px 20px;
     color: whitesmoke;
+    font-size: 5rem;
 }
+
+.quiz-header {
+    color: #003F75;
+    font-size: 2rem;
+}
+
 .quiz-sheet {
     background-color: #f9f2f4;
-    -webkit-border-radius: 15px;
-    -moz-border-radius: 15px;
     border-radius: 15px;
     padding: 10px 20px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+}
+
+.quiz-sheet .question {
+    font-weight: bold;
+}
+
+.quiz-sheet .quiz-submit {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
 }

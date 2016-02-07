@@ -6,8 +6,13 @@
 
 <body>
     <div class="container-fluid">
-        <h1>Axon Quiz</h1>
+        <div class="maestro-title">
+            <h1>Maestr&#9685;</h1>
+        </div>
         <div class="quiz-sheet">
+            <div class="quiz-header">
+                Axon Fundamentals Pt. 1
+            </div>
             <form method="POST" role="form">
                 <fieldset>
                     <div class="radio .disabled question-block">
@@ -41,7 +46,9 @@
                         <% } %>
                     </div>
                 </fieldset>
-                <button type="submit" class="btn btn-primary">submit answers</button>
+                <div class="quiz-submit">
+                    <button type="submit" class="btn btn-primary">submit answers</button>
+                </div>
             </form>
         </div>
     </div>
