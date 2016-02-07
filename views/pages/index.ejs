@@ -11,7 +11,7 @@
             <div class="quiz-header">
                 Axon Fundamentals Pt. 1
             </div>
-            <% if(toggles["inline-grading"]){ %>
+            <% if(Toggles.indexOf("inline-grading") >= 0){ %>
                 <div id="inline-quiz" class="inline-quiz">
                 </div>
 
@@ -57,7 +57,7 @@
             </form>
         </div>
     </div>
-    <% if(toggles["inline-grading"]){ %>
+    <% if(Toggles.indexOf("inline-grading") >= 0){ %>
     <script type="text/javascript" src="js/static/bundle.js"></script>
     <% } %>
 </body>

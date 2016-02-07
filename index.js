@@ -36,9 +36,7 @@ app.set('view engine', 'ejs');
 //routing
 app.get('/', jsonParser, function(request, response) {
     question.getQuizQuestions(function(quizQuestions){
-        console.log("toggles dev:");
-        console.log(Toggles.dev);
-        response.render('pages/index', {questions: quizQuestions, toggles: Toggles.toggles.dev});
+        response.render('pages/index', {questions: quizQuestions, Toggles: Toggles.toggles});
     });
 });
 
