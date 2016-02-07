@@ -1,4 +1,16 @@
 body {
+    background-color: royalblue;
     margin-left:10%;
     margin-right:10%;
+}
+
+h1 {
+    color: whitesmoke;
+}
+.quiz-sheet {
+    background-color: #f9f2f4;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    padding: 10px 20px;
 }
