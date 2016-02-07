@@ -1,8 +1,8 @@
 //requires
 var express = require('express');
 var bodyParser = require('body-parser');
-
-var _ = require('lodash');
+var browserify = require('browserify-middleware');
+var Toggles = require('./server/toggles');
 
 //initializers
 var jsonParser = bodyParser.json();
@@ -25,6 +25,7 @@ var app = express();
 //configurations
 app.set('port', (process.env.PORT || 5000));
 
+app.use(['/js', '/server', '/views'], browserify('./public/js/static'));
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -35,7 +36,9 @@ app.set('view engine', 'ejs');
 //routing
 app.get('/', jsonParser, function(request, response) {
     question.getQuizQuestions(function(quizQuestions){
-        response.render('pages/index', {questions: quizQuestions});
+        console.log("toggles dev:");
+        console.log(Toggles.dev);
+        response.render('pages/index', {questions: quizQuestions, toggles: Toggles.toggles.dev});
     });
 });
 
@@ -54,5 +57,4 @@ app.listen(app.get('port'), function() {
 
 livereload = require('livereload');
 server = livereload.createServer({exts: ["ejs"], debug: "true"});
-console.log(__dirname);
 server.watch([__dirname + "/public", __dirname + "/views"]);

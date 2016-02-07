@@ -11,6 +11,13 @@
             <div class="quiz-header">
                 Axon Fundamentals Pt. 1
             </div>
+            <% if(toggles["inline-grading"]){ %>
+                <div id="inline-quiz" class="inline-quiz">
+                </div>
+
+                <script type="text/babel" src="js/main.js"></script>
+            <% } %>
+
             <form method="POST" role="form">
                 <fieldset>
                     <div class="radio .disabled question-block">
@@ -50,5 +57,9 @@
             </form>
         </div>
     </div>
+    <% if(toggles["inline-grading"]){ %>
+    <script type="text/javascript" src="js/static/bundle.js"></script>
+    <% } %>
 </body>
 </html>
+
