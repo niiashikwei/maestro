@@ -13,7 +13,8 @@
     "lodash": "^4.2.1",
     "mongoose": "4.3.4",
     "mongoose-seed": "0.1.5",
-    "numeral": "1.5.3"
+    "numeral": "1.5.3",
+    "livereload": "^0.4.1"
   },
   "engines": {
     "node": "0.12.7"
@@ -30,7 +31,6 @@
   "license": "MIT",
   "devDependencies": {
     "jasmine": "^2.4.1",
-    "jshint": "latest",
-    "livereload": "^0.4.1"
+    "jshint": "latest"
   }
 }
