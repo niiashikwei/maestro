@@ -6,14 +6,17 @@
 
 <body>
     <div class="container-fluid">
-        <h1>Done Taking Axon Quiz!</h1>
-        <h4> Here's your score: <%= result %></h4>
-
-        <br>
-        <h4>Here's a resource to help you improve your Axon knowledge:<a href="http://www.axonframework.org/docs/2.4/"> Axon Reference </a></h4>
-        <br>
-        <h4>To submit Axon questions you'd like to see hosted, please send an email to ntetteh@thoughtworks.com</a></h4>
+        <% include ../partials/title.ejs %>
+        <div class="quiz-sheet">
+            <div class="results">
+                <h4> Here's your score: </h4>
+                <h1> <%= result %> </h1>
+            </div>
+            <br>
+            <h4>Here's a resource to help you improve your Axon knowledge:<a href="http://www.axonframework.org/docs/2.4/"> Axon Reference </a></h4>
+            <br>
+            <h4>To submit Axon questions, please send an email to: <code>ntetteh[@]thoughtworks.com</code></h4>
+        </div>
     </div>
-    <a href="/>Back</a>
 </body>
 </html>
