@@ -52,4 +52,7 @@ app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
 
-
+livereload = require('livereload');
+server = livereload.createServer({exts: ["ejs"], debug: "true"});
+console.log(__dirname);
+server.watch([__dirname + "/public", __dirname + "/views"]);
